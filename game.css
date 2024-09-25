@@ -1,0 +1,540 @@
+body{
+    margin:0;
+    padding:0
+}
+
+:root {
+    --rock: url(images/rock-icon.png);
+    --paper: url(images/paper-icon.png);
+    --scissors: url(images/scissors-icon.png);
+    --bgc: #8CC461;
+    --bx1: #FFA943;
+    --bx2: #BD00FF;
+    --bx3: #0074B6;
+
+}
+
+.page1{
+    background-color:#8CC461; ;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-items: space-between;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.display-score{
+    display:flex;
+    justify-content: space-between;
+    justify-items: flex-start;
+    border: white solid 2px;
+    border-radius:10px;
+    position: absolute;
+    width: 50%;
+    height:24%;
+    top:50px;
+}
+
+.game-option{
+    color:white;
+    padding: 1em;
+}
+
+.score-count{
+    display:flex;
+    align-items: center;
+    width: 40%;
+    justify-content: space-around;
+    padding:1em;
+}
+
+#game-opt p {
+    margin: 0;
+    color: #FFF;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 4px;
+    /* border: 2px solid rgb(0, 255, 42); */
+}
+
+.cScore , .yScore{
+   width:37%;
+   height:90%;
+   color:black;
+   align-items: center;
+   background-color: white;
+   border-radius: 10px;
+   padding:2%;
+}
+
+.title {
+    margin-bottom: 0;
+    text-align: center;
+    color: #656565;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 1.7px;
+}
+
+.score {
+    margin: 0;
+    color: #252525;
+    text-align: center;
+    font-family: Roboto;
+    font-size: 68px;
+    font-style: normal;
+    font-weight: 700;
+}
+
+.gamebox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10REM;
+    width: 50%;
+}
+
+.triangle {
+    display: block; 
+    width: fit-content;
+    /* border:black solid 2px; */
+    position: relative;
+    margin-top: 8rem; 
+}
+
+ .triangle1 {
+    width: 0;
+    height: 0;
+    border-left: 200px solid transparent;
+    border-right: 200px solid transparent;
+    border-top: 346.4px solid #210e0ea3;
+    position: relative;
+}
+
+.triangle2{
+    width:0;
+    height: 0;
+    border-left: 160px solid transparent;
+    border-right: 160px solid transparent;
+    border-top: 277.12px solid #8CC461;;
+    position:absolute;
+    top:25px;
+    left:39px
+}
+
+button.option{
+    height:170px;
+    width:170px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-weight: bold;
+    position: absolute;
+    background-color: #FFF;
+    cursor: pointer;
+}
+
+.bottom {
+    background: var(--paper) no-repeat center;   
+    border: 18px solid var(--bx1);
+    bottom: -30px;
+    left: 30%;
+}
+
+.top-left {
+    background: var(--rock) no-repeat center;
+    align-self: flex-end;
+    border: 18px solid var(--bx3);
+    top: -50px;
+    left: -30px;
+}
+
+.top-right {
+    background: var(--scissors) no-repeat center;
+    background-size: 50px;
+    align-self: flex-end;
+    border: 18px solid var(--bx2);
+    top: -50px;
+    right: -30px;
+}
+
+
+.Rules {
+    position: absolute;
+    /* text-align: center; */
+    bottom: 2rem;
+    right:3rem;
+    display: flex;
+  }
+  
+  #rule-button {
+    /* padding: 10px 20px;
+    font-size: 16px;
+    background-color: var(--bgc);
+    color: #FFF;
+    border: solid 3px #FFF;
+    cursor: pointer;
+    border-radius: 10px;
+    font-family:'Roboto', sans-serif;
+    font-weight: 500 ; */
+    border: 2px solid white;
+    background-color: transparent;
+    color: #fff;
+    width: 119px;
+    height: 40px;
+    border-radius: 13px;
+    font-family: Roboto;
+    font-size: 21px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 2.1px;
+    margin-left: 20px;
+  }
+  
+  /* Popup is hidden by default */
+  .game-rules {
+    display: none; 
+    position: absolute;
+    left: 80%; 
+    transform: translateX(-100%); 
+    bottom: 4rem;
+    background-color: #004429;;
+    color: #FFF;
+    padding: 12px;
+    border-radius: 16px;
+    border:5px #FFF solid;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 240px;
+  }
+  
+  /* Popup content (header and list) */
+  .game-rules h1 {
+    font-size: 24px;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .game-rules ul {
+    list-style-type: square;
+    padding-left: 20px;
+  }
+
+  .game-rules ul li::marker {
+    color: yellow;
+    font-size: x-large;
+  }
+  
+  .game-rules li {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+  
+  /* Close button (x) */
+  .close {
+    font-family: 'Dangrek', sans-serif;
+    font-size: 30px;
+    font-weight: 500;
+    color: #fff;
+    border: 4px solid white;
+    background-color: red;
+    padding: 2px 12px;
+    border-radius: 50%;
+    position: absolute;
+    right: -20px;
+    top: -40px;
+  }
+  
+  .close:hover, .close:focus {
+    color: #000;
+  }
+  
+  /*RESULT GEN*/
+.mainresult-box {
+    display: none;
+    width: 100%;
+    /* border:black solid 2px; */
+}
+
+.result-box {
+    width: 100%;
+}
+
+.choices {
+    display: flex;
+    justify-content: space-between;
+    /* border: 1px solid white; */
+    margin: 10px;
+}
+
+.choices .rc {
+    color: #FFF;
+    font-family: Roboto;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 1.7px;
+    /* border: 1px solid white; */
+    margin: 10px 30px;
+}
+/* ............................... */
+  
+/*RESULT GEN CIRCLE ANIMATION*/
+.selection-made {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: auto;
+    width: auto;
+    /* border: 3px solid white; */
+    position: relative;
+
+}
+
+.selected {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: transparent;
+    border: 28px solid transparent;
+}
+
+
+.selected .circle {
+    position: absolute;
+    top: 0%;
+    border: 28px solid rgb(237, 12, 8);
+    width: 150px;
+    height: 150px;
+    z-index: 1;
+    border-radius: 50%;
+    background-color: #fff;
+    background-image: var(--rock);
+    background-repeat: no-repeat;
+    background-position: center;
+
+}
+
+.result {
+    /* display: none; */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    /* border: 2px solid white; */
+    justify-content: center;
+    /* border:solid black 3px; */
+}
+
+.result #status {
+    color: #FFF;
+    text-align: center;
+    font-family: Roboto;
+    font-size: 39px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    letter-spacing: 3.9px;
+}
+
+.result #status1 {
+    margin-top: 10px;
+    color: #FFF;
+    text-align: center;
+    font-family: Roboto;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    letter-spacing: 2.5px;
+}
+
+#play-again {
+    margin-top: 10px;
+    width: 174px;
+    height: 44px;
+    border-radius: 9px;
+    border-color: inherit;
+    background: #FFF;
+    color: #6B6B6B;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 1.5px;
+}
+
+.circle.two {
+    position: absolute;
+    top: 0%;
+    border: 28px solid rgb(8, 237, 8);
+    width: 150px;
+    height: 150px;
+    z-index: 1;
+    border-radius: 50%;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: center;
+
+}
+
+.circle.one {
+    left: 0%;
+}
+
+.circle.two {
+    right: 0%;
+}
+
+.next-btn {
+    border: 2px solid white;
+    background-color: transparent;
+    color: #fff;
+    width: 119px;
+    height: 40px;
+    border-radius: 13px;
+    font-family: Roboto;
+    font-size: 21px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 2.1px;
+    margin-left: 20px;
+    display: none;
+}
+
+a {
+    text-decoration: none; /* Also ensure the parent link does not add underline */
+}
+
+/* final page */
+
+.final-page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:0;
+    margin:0;
+    width:100vw;
+    height:100vh;
+    position: relative;
+    background-color: var(--bgc);
+}
+
+#trophy {
+    height:60%;
+    width:35%;
+    padding-right: 10%;
+}
+
+.tropḥy{
+    /* position:absolute; */
+    display: flex;
+    justify-content: center ;
+    align-items: flex-end;
+    height: 50vh;
+    width:45vw;
+    background-image: url(images/star.png);
+    background-color: var(--bgc);
+    /* top: 5rem; */
+    /* padding-top: 5rem; */
+    padding-bottom: 0%;
+    /* border:solid black 2px; */
+    /* background-size: cover;  */
+    background-size: contain; 
+    background-repeat: no-repeat;
+}
+
+.line1{
+    margin-top: 1rem;
+  color: #FFF;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 110px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 9.1px;
+}
+
+.line2{
+       margin-top: 5px;
+        margin-bottom: 10px;
+        /* border: 2px solid white; */
+        color: #FFF;
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 50px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        letter-spacing: 4.1px;
+}
+
+#play-again {
+    
+    padding: 10px;
+    margin-bottom: 60px;
+    
+    /* border: 2px solid white; */
+}
+
+
+
+
+
+#playagain {
+    
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    
+    /* border: 2px solid white; */
+}
+#playagain button{
+    font-size: x-large;
+    width: 200px;
+    height: 70px;
+    border-color: #fff;
+}
+
+
+  @keyframes ripple {
+    0% {
+        box-shadow: 0 0 0 0 rgba(36, 132, 36, 0.4); /* Start with no ripple */
+    }
+    50% {
+        box-shadow: 
+            0 0 0 20px rgba(37, 146, 37, 0.4), /* Initial ripple */
+            0 0 0 40px rgba(23, 127, 23, 0.4); /* Expanding ripple */
+    }
+    100% {
+        box-shadow: 
+            0 0 0 0 rgba(0, 255, 0, 0), /* Fade out the ripple */
+            0 0 0 70px rgba(0, 255, 0, 0.1); /* Further distance for final dissipating effect */
+    }
+}
+
+
+
+.winner {
+    animation: ripple 2s ease-out infinite; /* Continuous animation */
+}
+
+/* Optional styles for spans to manage their appearance */
+span {
+    position: absolute;
+    border-radius: 50%; /* Ensure spans are circular */
+    /* Adjust sizes and positions of spans as needed */
+}
