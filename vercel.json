@@ -1,12 +1,5 @@
 {
   "rewrites": [
-    {
-      "source": "/intro",
-      "destination": "/intro.html"
-    },
-    {
-      "source": "/final",
-      "destination": "/final.html"
-    }
+    { "source": "/(.*)", "destination": "/intro.html" }
   ]
 }
