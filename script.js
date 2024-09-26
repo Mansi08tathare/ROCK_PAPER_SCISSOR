@@ -125,6 +125,33 @@ function checkWinner() {
 }
 
 // Reset the game - only resets scores if 5 points are reached
+// function resetGame() {
+//     if (userScore === 5 || compScore === 5) {
+//         userScore = 0;
+//         compScore = 0;
+//         localStorage.setItem('userScore', userScore); // Reset local storage
+//         localStorage.setItem('compScore', compScore);
+//     }
+
+//     userScoreDisplay.textContent = userScore;
+//     compScoreDisplay.textContent = compScore;
+//     userChoiceDisplay.textContent = "YOU PICKED";
+//     compChoiceDisplay.textContent = "PC PICKED";
+//     triangle.style.display = 'block'; // Show the triangle again when resetting
+//     mainResultBox.style.display = 'none'; // Hide the result box when resetting
+
+//     // Hide the "Next" button during reset
+//     document.querySelector('.next-btn').style.display = 'none';
+
+//     // Reset styles for circles
+//     resetCircleStyles(mainUserElement);
+//     resetCircleStyles(mainCompElement);
+
+//     // Remove winner class on reset
+//     mainUserElement.classList.remove('winner');
+//     mainCompElement.classList.remove('winner');
+// }
+
 function resetGame() {
     if (userScore === 5 || compScore === 5) {
         userScore = 0;
@@ -133,23 +160,49 @@ function resetGame() {
         localStorage.setItem('compScore', compScore);
     }
 
-    userScoreDisplay.textContent = userScore;
-    compScoreDisplay.textContent = compScore;
-    userChoiceDisplay.textContent = "YOU PICKED";
-    compChoiceDisplay.textContent = "PC PICKED";
-    triangle.style.display = 'block'; // Show the triangle again when resetting
-    mainResultBox.style.display = 'none'; // Hide the result box when resetting
+    // Check if these elements exist before trying to set their textContent
+    if (userScoreDisplay) {
+        userScoreDisplay.textContent = userScore;
+    }
+    if (compScoreDisplay) {
+        compScoreDisplay.textContent = compScore;
+    }
+    if (userChoiceDisplay) {
+        userChoiceDisplay.textContent = "YOU PICKED";
+    }
+    if (compChoiceDisplay) {
+        compChoiceDisplay.textContent = "PC PICKED";
+    }
 
-    // Hide the "Next" button during reset
-    document.querySelector('.next-btn').style.display = 'none';
+    // Check if the triangle and result box elements exist before manipulating them
+    if (triangle) {
+        triangle.style.display = 'block'; // Show the triangle again when resetting
+    }
+    if (mainResultBox) {
+        mainResultBox.style.display = 'none'; // Hide the result box when resetting
+    }
 
-    // Reset styles for circles
-    resetCircleStyles(mainUserElement);
-    resetCircleStyles(mainCompElement);
+    // Check if the next button exists before hiding it
+    const nextBtn = document.querySelector('.next-btn');
+    if (nextBtn) {
+        nextBtn.style.display = 'none'; // Hide the "Next" button during reset
+    }
 
-    // Remove winner class on reset
-    mainUserElement.classList.remove('winner');
-    mainCompElement.classList.remove('winner');
+    // Check if the circles exist before resetting their styles
+    if (mainUserElement) {
+        resetCircleStyles(mainUserElement);
+    }
+    if (mainCompElement) {
+        resetCircleStyles(mainCompElement);
+    }
+
+    // Remove winner class from circles if they exist
+    if (mainUserElement) {
+        mainUserElement.classList.remove('winner');
+    }
+    if (mainCompElement) {
+        mainCompElement.classList.remove('winner');
+    }
 }
 
 // Update circle styles based on choice
@@ -172,25 +225,59 @@ function updateCircleStyles(circleElement, choice) {
     }
 }
 
-// Reset circle styles
+// Add event listener for "Play Again" button (check if the button exists)
+const playAgainBtn = document.getElementById('play-again');
+if (playAgainBtn) {
+    playAgainBtn.addEventListener('click', function() {
+        console.log("play-again");
+
+        // Check if these elements exist before trying to access their styles
+        if (triangle) {
+            triangle.style.display = 'block';
+        }
+        if (mainResultBox) {
+            mainResultBox.style.display = 'none';
+        }
+        if (mainUserElement) {
+            resetCircleStyles(mainUserElement);
+        }
+        if (mainCompElement) {
+            resetCircleStyles(mainCompElement);
+        }
+        
+        if (userChoiceDisplay) {
+            userChoiceDisplay.textContent = "YOU PICKED";
+        }
+        if (compChoiceDisplay) {
+            compChoiceDisplay.textContent = "PC PICKED";
+        }
+
+        resetGame();
+    });
+}
+
+
+// // Reset circle styles
 function resetCircleStyles(circleElement) {
     circleElement.style.backgroundImage = ''; // Reset background image
     circleElement.style.borderColor = ''; // Reset border color
 }
 
-// Add event listener for "Play Again" button (check if the button exists)
-const playAgainBtn = document.getElementById('play-again');
-if (playAgainBtn) {
-    playAgainBtn.addEventListener('click', function() {
-        triangle.style.display = 'block'; 
-        mainResultBox.style.display = 'none'; 
-        resetCircleStyles(mainUserElement);
-        resetCircleStyles(mainCompElement);
-        userChoiceDisplay.textContent = "YOU PICKED";
-        compChoiceDisplay.textContent = "PC PICKED";
-        resetGame();
-    });
-}
+// // Add event listener for "Play Again" button (check if the button exists)
+// const playAgainBtn = document.getElementById('play-again');
+// if (playAgainBtn) {
+
+//     playAgainBtn.addEventListener('click', function() {
+//         console.log("play-again")
+//         triangle.style.display = 'block'; 
+//         mainResultBox.style.display = 'none'; 
+//         resetCircleStyles(mainUserElement);
+//         resetCircleStyles(mainCompElement);
+//         userChoiceDisplay.textContent = "YOU PICKED";
+//         compChoiceDisplay.textContent = "PC PICKED";
+//         resetGame();
+//     });
+// }
 
 // Get a random choice for the computer
 function getRandomChoice() {
